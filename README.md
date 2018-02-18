@@ -46,4 +46,6 @@ docker run \
     vmpartner/mysql-buckup
 ```
 
-⚠ You must set "restart: unless-stopped" because first time run hack for generating cron file by env and then will kill main process. Please see file bin/add_task for details.
+You need set MYSQL, FTP details and periodic task CRON_JOB in cron format. If you don't know cron, please read more at https://en.wikipedia.org/wiki/Cron
+
+⚠ Note that "restart: unless-stopped" required, because first time image run hack for generating cron file by your CRON_JOB that set by env variable and then will kill main process for restart. Please see file bin/add_task for details.
