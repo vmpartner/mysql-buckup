@@ -48,4 +48,8 @@ docker run \
 
 You need set MYSQL, FTP details and periodic task CRON_JOB in cron format. If you don't know cron, please read more at https://en.wikipedia.org/wiki/Cron
 
-⚠ Note that "restart: unless-stopped" required, because first time image run hack for generating cron file by your CRON_JOB that set by env variable and then will kill main process for restart. Please see file bin/add_task for details.
+## Note ⚠  
+Note that "restart: unless-stopped" required, because first time image run hack for generating cron file by your CRON_JOB that set by env variable and then will kill main process for restart. Please see file bin/add_task for details.
+
+## Ref 🍭  
+Get cheap cloud ftp for backup at https://selectel.ru/?ref_code=8m7MgmV9Axc4
