@@ -1,5 +1,5 @@
 # mysql-buckup
-Automatic backup mysql db to ftp server with light image and simple use 🌂
+Automatic/periodic cron backup MySQL DB to FTP server by lightweight docker image with simple settings 🌂
 
 ## Description
 This image making automatic backup from any mysql host to ftp server by mysqldump and curl utils.
@@ -48,8 +48,8 @@ docker run \
 
 You need set MYSQL, FTP details and periodic task CRON_JOB in cron format. If you don't know cron, please read more at https://en.wikipedia.org/wiki/Cron
 
-## Note ⚠  
-Note that "restart: unless-stopped" required, because first time image run hack for generating cron file by your CRON_JOB that set by env variable and then will kill main process for restart. Please see file bin/add_task for details.
+## Note ⚠
+Note that "restart: unless-stopped" required, because first time container run trick for generating cron file by your CRON_JOB, that set by your env variable and then will kill main process for restart. Please see file bin/add_task for details.
 
-## Ref 🍭  
-Get cheap cloud ftp for backup at https://selectel.ru/en/services/cloud/storage/?ref_code=8m7MgmV9Axc4
+## Adv 🍭
+Get cheap cloud FTP backup account https://selectel.ru/en/services/cloud/storage/?ref_code=8m7MgmV9Axc4
