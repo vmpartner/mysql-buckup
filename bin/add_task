@@ -1,0 +1,2 @@
+echo "${CRON_JOB}   /usr/local/bin/backup" > /var/spool/cron/crontabs/root && \
+pkill -f crond
