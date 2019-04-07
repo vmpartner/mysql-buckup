@@ -50,6 +50,3 @@ You need set MYSQL, FTP details and periodic task CRON_JOB in cron format. If yo
 
 ## Note ⚠
 Note that "restart: unless-stopped" required, because first time container run trick for generating cron file by your CRON_JOB, that set by your env variable and then will kill main process for restart. Please see file bin/add_task for details.
-
-## Adv 🍭
-Get cheap cloud FTP backup account https://selectel.ru/en/services/cloud/storage/?ref_code=8m7MgmV9Axc4
