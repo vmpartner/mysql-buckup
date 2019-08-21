@@ -1,8 +1,17 @@
 #!/bin/sh
 
+set -e
+
 now=$(date +"%s_%Y-%m-%d")
 /usr/bin/mysqldump --opt -h ${MYSQL_HOST} -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE} > "/backup/${now}_${MYSQL_DATABASE}.sql" && \
 cd /backup/ && \
 gzip ${now}_${MYSQL_DATABASE}.sql && \
 curl -T ${now}_${MYSQL_DATABASE}.sql.gz -u ${FTP_USER}:${FTP_PASSWORD} ${FTP_URL} && \
 rm -f ${now}_${MYSQL_DATABASE}.sql.gz
+
+if [ -z "$CHECK_URL" ]
+then
+  echo "INFO: Define CHECK_URL with https://healthchecks.io to monitor sync job"
+else
+  wget $CHECK_URL -O /dev/null
+fi
