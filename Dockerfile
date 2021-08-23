@@ -1,12 +1,23 @@
 FROM alpine
 
-RUN apk add --no-cache mysql-client curl
-RUN mkdir /backup
+ENV MYSQL_HOST **None**
+ENV MYSQL_USER **None**
+ENV MYSQL_DATABASE **None**
+ENV RCLONE_DEST **None**
+ENV SCHEDULE **None**
+ENV CHECK_URL **None**
 
-ADD bin/crontab /var/spool/cron/crontabs/root
-ADD bin/backup /usr/local/bin/backup
-ADD bin/add_task /usr/local/bin/add_task
-RUN chmod +x /usr/local/bin/add_task && \
-    chmod +x /usr/local/bin/backup
+RUN apk update && apk add --no-cache mysql-client curl
+ADD backup.sh /backup.sh
+ADD run.sh /run.sh
+RUN chmod +x /upload.sh && chmod +x /run.sh
+RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
+    unzip rclone-current-linux-amd64.zip && \
+    cd rclone-*-linux-amd64 && \
+    cp rclone /usr/bin/ && \
+    chown root:root /usr/bin/rclone && \
+    chmod 755 /usr/bin/rclone
 
-CMD crond -f && tail -f /var/log/cron.log
+USER root
+
+CMD ["sh", "run.sh"]
