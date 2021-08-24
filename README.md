@@ -11,7 +11,7 @@ version: '2'
 
 services:
     mysql-backup:
-        image: vmpartner/mysql-buckup:v2
+        image: vmpartner/mysql-buckup:v2.0.4 # Find latest image version on release page
         links:
             - mysql:mysql
         depends_on:
