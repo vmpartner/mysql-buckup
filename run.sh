@@ -27,6 +27,6 @@ if [ "$MYSQL_DATABASE" = "**None**" ]; then
   return 1
 fi
 
-echo "$SCHEDULE /upload.sh" > /crontab.txt
+echo "$SCHEDULE /backup.sh" > /crontab.txt
 /usr/bin/crontab /crontab.txt
 exec /usr/sbin/crond -f -l 8
